@@ -11,6 +11,7 @@ cat_20MN %>%
 
 POI_20MN <- poi %>%
   inner_join(cat_20MN, by = c("category_name" = "category")) %>%
+  select(fsq_place_id, category_name, framework_category, framework_theme)
 
 st_write(POI_20MN, "20MN-WS/data/destinations.gpkg")
 
