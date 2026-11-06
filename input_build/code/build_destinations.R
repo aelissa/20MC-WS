@@ -1,24 +1,3 @@
-# Builds one destination_<theme>.gpkg per Framework Theme (paper Table 1).
-# Run from the project root: Rscript input_build/code/build_destinations.R
-#
-# Source priority: files in input_build/row_input/ first; the local OSM
-# Scotland extract (scotland.gpkg, Geofabrik-style layers) only for
-# categories with no official/open dataset at all. geoDS_FS_POI.gpkg
-# (Foursquare "uk_retail_pois" layer) is used for Housing and Community
-# (incl. Retail: Fashion, Furniture and Home, Sporting Goods, Computers and
-# Electronics) and Social Interaction.
-#
-# Natural Space and Play and Recreation use row_input only — categories
-# with no source there (Forest, Natural Park, Botanical Garden, Basketball
-# Court, Stadium) are dropped rather than filled from OSM.
-#
-# Every output is clipped to the Scotland boundary (ancillary_data/urban-rural.gpkg,
-# dissolved) via filter_to_scotland() — including geoDS_FS_POI, which is
-# GB-wide. Its read also pre-filters by lat/lng bounding box in SQL purely
-# to keep the query fast on a 1GB/1.47M-row file (no attribute/name field
-# involved); the polygon clip afterward is what actually guarantees
-# Scotland-only output.
-
 library(sf)
 library(dplyr)
 library(tidyr)
